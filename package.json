@@ -9,7 +9,8 @@
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.json",
     "lint": "biome check .",
-    "registry": "pnpm --filter @dawitlabs/pixelfield registry && mkdir -p static/r && cp packages/core/registry/*.json static/r/"
+    "registry": "pnpm --filter @dawitlabs/pixelfield registry && mkdir -p static/r && cp packages/core/registry/*.json static/r/",
+    "prepare": "svelte-kit sync"
   },
   "dependencies": {
     "@dawitlabs/pixelfield": "workspace:*",
