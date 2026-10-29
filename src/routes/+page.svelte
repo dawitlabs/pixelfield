@@ -1,17 +1,17 @@
 <script lang="ts">
   import { GENERATOR_NAMES, type FieldGenerator, type FieldPreset } from '@dawitlabs/pixelfield';
   import Field from '@dawitlabs/pixelfield/svelte';
-  import { ArrowUpRight, Check, Copy } from 'lucide-svelte';
   import { onMount } from 'svelte';
   import EffectCard from '$lib/components/EffectCard.svelte';
   import EffectDialog from '$lib/components/EffectDialog.svelte';
-  import { EFFECTS, EFFECT_TINT, FEATURED, GENERATOR_META, TINTS } from '$lib/data';
+  import Mark from '$lib/components/Mark.svelte';
+  import { EFFECTS, FEATURED, GENERATOR_META } from '$lib/data';
+  import { fieldTheme, fieldTint, mode } from '$lib/mode.svelte';
 
   const MANAGERS = ['pnpm', 'npm', 'bun'] as const;
-  const CYCLE: FieldPreset[] = ['plasma', 'aurora', 'galaxy', 'marble', 'current', 'nebula'];
+  const CYCLE: FieldPreset[] = ['marble', 'nebula', 'plasma', 'terrain', 'current', 'aurora'];
 
   let family = $state<FieldGenerator | 'all'>('all');
-  let override = $state('');
   let open = $state<FieldPreset | null>(null);
   let manager = $state<(typeof MANAGERS)[number]>('pnpm');
   let isCopied = $state(false);
@@ -23,7 +23,7 @@
 
   onMount(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    const id = setInterval(() => (heroIndex += 1), 5200);
+    const id = setInterval(() => (heroIndex += 1), 5600);
     return () => clearInterval(id);
   });
 
@@ -42,52 +42,46 @@
   <title>pixelfield — 26 dithered pixel effects for canvas</title>
   <meta
     name="description"
-    content="Twenty-six animated ordered-dither pixel effects across six generator families. Copy the source into your project — zero runtime dependencies."
+    content="Twenty-six animated 1-bit dither effects for canvas. Copy the source into your project — zero runtime dependencies."
   />
 </svelte:head>
 
-<section class="relative isolate min-h-[88svh] overflow-hidden">
-  <div class="absolute inset-0 -z-10">
+<section class="relative isolate overflow-hidden border-b border-hairline-soft">
+  <div class="absolute inset-0 -z-10 opacity-80">
     {#key hero}
-      <div class="absolute inset-0 animate-[rise-in_1.2s_var(--ease-soft)_both]">
-        <Field preset={hero} tint={EFFECT_TINT[hero]} seed={6} intensity={1.05} />
+      <div class="absolute inset-0 animate-[rise-in_1.4s_var(--ease-soft)_both]">
+        <Field preset={hero} tint={fieldTint(mode.current)} theme={fieldTheme(mode.current)} seed={6} intensity={1} />
       </div>
     {/key}
   </div>
   <div
-    class="absolute inset-0 -z-10 bg-[radial-gradient(120%_85%_at_15%_10%,rgba(10,11,14,0.94),rgba(10,11,14,0.62)_45%,rgba(10,11,14,0.9))]"
+    class="absolute inset-0 -z-10"
+    style="background: linear-gradient(180deg, color-mix(in srgb, var(--color-ink) 52%, transparent), color-mix(in srgb, var(--color-ink) 32%, transparent) 38%, color-mix(in srgb, var(--color-ink) 96%, transparent))"
   ></div>
 
-  <div class="mx-auto flex min-h-[88svh] max-w-6xl flex-col justify-end px-5 pt-32 pb-14">
+  <div class="mx-auto flex min-h-[86svh] max-w-6xl flex-col justify-end px-5 pt-28 pb-16">
     <div class="rise">
-      <div class="flex items-center gap-2.5">
-        <span class="blip h-1.5 w-1.5 rounded-full" style="background: {EFFECT_TINT[hero]}"></span>
-        <span class="tag">now rendering · {hero}</span>
-      </div>
-
-      <h1 class="display mt-5 max-w-[14ch] text-[clamp(3rem,8.5vw,7rem)]">
-        Pixels with<br />
-        <span class="italic" style="color: {EFFECT_TINT[hero]}; transition: color 900ms var(--ease-soft)">
-          weather.
-        </span>
+      <h1 class="display max-w-[16ch] text-[clamp(2.8rem,7.4vw,6rem)]">
+        Create with no
+        <span class="accent-serif italic">limitations</span>
       </h1>
 
-      <div class="mt-8 flex flex-col gap-7 lg:flex-row lg:items-end lg:justify-between">
-        <p class="max-w-md text-[16px] leading-[1.6] text-muted">
-          Twenty-six animated dither fields, drawn straight into canvas
-          <span class="font-mono text-[14px] text-ice">ImageData</span>. Run one command and the
-          source lands in your repo. You own it after that.
+      <div class="mt-10 flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+        <p class="max-w-sm text-[15px] leading-[1.65] text-dim">
+          Twenty-six animated 1-bit dither effects, drawn straight into canvas
+          <span class="font-mono text-[13px] text-paper">ImageData</span>. One command puts the
+          source in your repo.
         </p>
 
-        <div class="w-full max-w-sm">
-          <div class="card overflow-hidden backdrop-blur-xl">
-            <div class="flex items-center gap-1 border-b border-hairline p-1.5">
+        <div class="w-full max-w-md">
+          <div class="overflow-hidden rounded-md border border-hairline">
+            <div class="flex items-center gap-4 border-b border-hairline-soft px-4 py-2.5">
               {#each MANAGERS as m (m)}
                 <button
                   type="button"
                   onclick={() => (manager = m)}
                   data-active={manager === m}
-                  class="rounded-xs px-2.5 py-1.5 font-mono text-[11.5px] text-faint transition-colors duration-200 hover:text-ice data-[active=true]:bg-raised data-[active=true]:text-ice"
+                  class="mono-label border-b border-transparent pb-0.5 text-[11.5px] transition-colors duration-200 hover:text-paper data-[active=true]:border-paper data-[active=true]:text-paper"
                 >
                   {m}
                 </button>
@@ -95,10 +89,10 @@
               <button
                 type="button"
                 onclick={copyInstall}
-                class="ml-auto flex items-center gap-1.5 rounded-xs px-2.5 py-1.5 font-mono text-[11.5px] text-faint transition-all duration-200 ease-[var(--ease-spring)] hover:bg-raised hover:text-ice active:scale-92"
+                class="mono-label ml-auto text-[11.5px] transition-colors duration-200 hover:text-paper"
                 aria-label="Copy install command"
               >
-                {#if isCopied}<Check size={12.5} /> copied{:else}<Copy size={12.5} /> copy{/if}
+                {isCopied ? 'copied' : 'copy'}
               </button>
             </div>
             <code class="block overflow-x-auto px-4 py-3.5 font-mono text-[13px] whitespace-nowrap">
@@ -106,12 +100,20 @@
               {install}
             </code>
           </div>
-          <div class="mt-2.5 flex gap-4">
-            <a href="#gallery" class="group inline-flex items-center gap-1 text-[13.5px] font-medium text-ice">
+
+          <div class="mt-3 flex items-center gap-3">
+            <a
+              href="#effects"
+              class="rounded-pill bg-paper px-5 py-2.5 text-[13px] font-600 text-ink transition-transform duration-200 ease-[var(--ease-spring)] hover:-translate-y-0.5 active:scale-97"
+            >
               Browse 26 effects
-              <ArrowUpRight size={14} class="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
-            <a href="/api/" class="text-[13.5px] text-muted transition-colors hover:text-ice">Reference</a>
+            <a
+              href="/api/"
+              class="rounded-pill border border-hairline px-5 py-2.5 text-[13px] font-500 transition-colors duration-200 hover:border-paper"
+            >
+              Reference
+            </a>
           </div>
         </div>
       </div>
@@ -119,47 +121,30 @@
   </div>
 </section>
 
-<section id="gallery" class="mx-auto max-w-6xl scroll-mt-20 px-5 pt-20">
+<section id="effects" class="mx-auto max-w-6xl scroll-mt-16 px-5 pt-16">
   <div class="flex flex-wrap items-end justify-between gap-5">
     <div>
       <p class="tag">the set</p>
-      <h2 class="display mt-3 text-[clamp(1.9rem,3.6vw,2.7rem)]">
-        {shown.length}
-        {family === 'all' ? 'effects, six families' : GENERATOR_META[family].label.toLowerCase()}
+      <h2 class="display mt-3 text-[clamp(1.8rem,3.4vw,2.6rem)]">
+        {shown.length} effects,
+        <span class="accent-serif italic">six families</span>
       </h2>
       {#if family !== 'all'}
-        <p class="mt-2 max-w-md text-[14px] leading-[1.6] text-muted">{GENERATOR_META[family].blurb}</p>
+        <p class="mt-2 max-w-md text-[13.5px] leading-[1.6] text-dim">{GENERATOR_META[family].blurb}</p>
       {/if}
-    </div>
-
-    <div class="flex items-center gap-2">
-      <span class="tag">tint</span>
-      {#each TINTS as swatch (swatch.name)}
-        <button
-          type="button"
-          onclick={() => (override = swatch.hex)}
-          data-active={override === swatch.hex}
-          class="h-5 w-5 rounded-full border border-hairline transition-transform duration-200 ease-[var(--ease-spring)] hover:scale-125 data-[active=true]:ring-2 data-[active=true]:ring-ice/70 data-[active=true]:ring-offset-2 data-[active=true]:ring-offset-obsidian"
-          style={swatch.hex
-            ? `background:${swatch.hex}`
-            : 'background:conic-gradient(#8ab4ff,#9ee36a,#ffc86b,#ff6f91,#c49cff,#8ab4ff)'}
-          aria-label="Tint {swatch.name}"
-          aria-pressed={override === swatch.hex}
-        ></button>
-      {/each}
     </div>
   </div>
 
-  <div class="mt-6 flex flex-wrap gap-1.5" role="tablist" aria-label="Effect family">
+  <div class="mt-6 flex flex-wrap gap-5 border-b border-hairline-soft pb-4" role="tablist" aria-label="Effect family">
     <button
       type="button"
       role="tab"
       aria-selected={family === 'all'}
       onclick={() => (family = 'all')}
       data-active={family === 'all'}
-      class="rounded-full border border-hairline px-3.5 py-1.5 font-mono text-[11.5px] text-muted transition-all duration-200 hover:border-hairline-strong hover:text-ice data-[active=true]:border-ice data-[active=true]:bg-ice data-[active=true]:text-obsidian"
+      class="mono-label border-b border-transparent pb-1 transition-colors duration-200 hover:text-paper data-[active=true]:border-paper data-[active=true]:text-paper"
     >
-      all · {EFFECTS.length}
+      All <span class="num text-faint">{EFFECTS.length}</span>
     </button>
     {#each GENERATOR_NAMES as generator (generator)}
       <button
@@ -168,21 +153,22 @@
         aria-selected={family === generator}
         onclick={() => (family = generator)}
         data-active={family === generator}
-        class="rounded-full border border-hairline px-3.5 py-1.5 font-mono text-[11.5px] text-muted transition-all duration-200 hover:border-hairline-strong hover:text-ice data-[active=true]:border-ice data-[active=true]:bg-ice data-[active=true]:text-obsidian"
+        class="mono-label border-b border-transparent pb-1 transition-colors duration-200 hover:text-paper data-[active=true]:border-paper data-[active=true]:text-paper"
       >
-        {generator} · {EFFECTS.filter((e) => e.generator === generator).length}
+        {generator} <span class="num text-faint">{EFFECTS.filter((e) => e.generator === generator).length}</span>
       </button>
     {/each}
   </div>
 
-  {#key family + override}
-    <div class="mt-7 grid auto-rows-[10rem] grid-cols-2 gap-3 sm:auto-rows-[11.5rem] sm:grid-cols-4">
+  {#key family}
+    <div class="mt-6 grid auto-rows-[10rem] grid-cols-2 gap-3 sm:auto-rows-[11.5rem] sm:grid-cols-4">
       {#each shown as effect, i (effect.name)}
         <EffectCard
           name={effect.name}
           generator={effect.generator}
           note={effect.note}
-          tint={override || undefined}
+          tint={fieldTint(mode.current)}
+          fieldTheme={fieldTheme(mode.current)}
           span={family === 'all' && (FEATURED as readonly string[]).includes(effect.name)}
           index={i}
           onopen={(n) => (open = n)}
@@ -194,19 +180,21 @@
 
 <section class="mx-auto max-w-6xl px-5 pt-24">
   <p class="tag">how it ships</p>
-  <h2 class="display mt-3 text-[clamp(1.9rem,3.6vw,2.7rem)]">Copy, don't install</h2>
-  <div class="mt-7 grid gap-3 sm:grid-cols-3">
-    {#each [{ n: '01', t: 'Init', c: '#8ab4ff', b: 'One command writes pixelfield.json with your framework and output path.' }, { n: '02', t: 'Add', c: '#9ee36a', b: 'Name the effects you want. Real source files land in your project.' }, { n: '03', t: 'Own', c: '#ffc86b', b: 'Every option is inlined. Edit it, rename it, delete what you do not need.' }] as step (step.n)}
-      <div
-        class="card group p-6 transition-[transform,border-color] duration-400 ease-[var(--ease-spring)] hover:-translate-y-1.5"
-        style="--c: {step.c}"
-      >
-        <span class="num text-[11px] tracking-[0.2em]" style="color: var(--c)">{step.n}</span>
-        <h3 class="mt-3 font-display text-[18px] font-600 tracking-tight">{step.t}</h3>
-        <p class="mt-2 text-[13.5px] leading-[1.65] text-muted">{step.b}</p>
+  <h2 class="display mt-3 text-[clamp(1.8rem,3.4vw,2.6rem)]">
+    Copy, <span class="accent-serif italic">don't install</span>
+  </h2>
+  <div class="mt-8 grid gap-px border border-hairline-soft bg-[var(--color-hairline-soft)] sm:grid-cols-3">
+    {#each [{ n: '01', t: 'Init', b: 'One command writes pixelfield.json with your framework and output path.' }, { n: '02', t: 'Add', b: 'Name the effects you want. Real source files land in your project.' }, { n: '03', t: 'Own', b: 'Every option is inlined. Edit it, rename it, delete what you do not need.' }] as step (step.n)}
+      <div class="bg-ink p-7">
+        <div class="flex items-center gap-2.5">
+          <Mark size={11} />
+          <span class="num text-[11px] text-faint">{step.n}</span>
+        </div>
+        <h3 class="mt-4 text-[17px] font-500 tracking-tight">{step.t}</h3>
+        <p class="mt-2 text-[13.5px] leading-[1.65] text-dim">{step.b}</p>
       </div>
     {/each}
   </div>
 </section>
 
-<EffectDialog name={open} tint={override || undefined} onclose={() => (open = null)} />
+<EffectDialog name={open} tint={fieldTint(mode.current)} fieldTheme={fieldTheme(mode.current)} onclose={() => (open = null)} />

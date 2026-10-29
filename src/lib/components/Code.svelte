@@ -31,7 +31,7 @@
       type="button"
       onclick={copy}
       data-copied={isCopied}
-      class="flex shrink-0 items-center gap-1.5 rounded-sm px-2 py-1 font-mono text-[11px] text-faint transition-all duration-200 ease-[var(--ease-spring)] hover:bg-raised hover:text-ice active:scale-92 data-[copied=true]:text-success"
+      class="flex shrink-0 items-center gap-1.5 rounded-sm px-2 py-1 font-mono text-[11px] text-faint transition-all duration-200 ease-[var(--ease-spring)] hover:bg-raised hover:text-milk active:scale-92 data-[copied=true]:text-cyan"
     >
       {#if isCopied}
         <Check size={12.5} aria-hidden="true" />

@@ -26,16 +26,16 @@ field.destroy();`;
     <p class="tag">01 — options</p>
     <h1 class="display mt-4 text-huge">Every<br />knob</h1>
     <p class="mt-5 max-w-xs text-[15px] leading-[1.6] text-muted">
-      One object. Accepted by <span class="font-mono text-[13px] text-ice">createField</span>,
-      both component bindings, and <span class="font-mono text-[13px] text-ice">update()</span>.
+      One object. Accepted by <span class="font-mono text-[13px] text-milk">createField</span>,
+      both component bindings, and <span class="font-mono text-[13px] text-milk">update()</span>.
     </p>
   </div>
   <div class="grid gap-px bg-hair">
     {#each OPTIONS as option (option.name)}
       <div class="grid grid-cols-1 gap-1 bg-surface px-5 py-4 sm:grid-cols-[minmax(0,10rem)_minmax(0,1fr)] sm:gap-4">
         <div>
-          <p class="font-mono text-[13px] text-ice">{option.name}</p>
-          <p class="mt-1 font-mono text-[11px] text-amber-text">{option.type}</p>
+          <p class="font-mono text-[13px] text-milk">{option.name}</p>
+          <p class="mt-1 font-mono text-[11px] text-cyan">{option.type}</p>
         </div>
         <div>
           <p class="text-[13.5px] leading-[1.65] text-muted">{option.note}</p>
@@ -68,7 +68,7 @@ field.destroy();`;
       <tbody>
         {#each PRESET_NAMES as name (name)}
           <tr class="border-b border-hairline last:border-0">
-            <th scope="row" class="px-4 py-3 text-left font-medium text-amber-text">{name}</th>
+            <th scope="row" class="px-4 py-3 text-left font-medium text-cyan">{name}</th>
             {#each COLUMNS as column (column)}
               <td class="px-3 py-3 whitespace-nowrap text-muted">{PRESETS[name][column]}</td>
             {/each}
@@ -82,7 +82,7 @@ field.destroy();`;
     <div class="grid gap-px bg-hair sm:grid-cols-2">
       {#each PRESET_NAMES as name (name)}
         <div class="bg-surface px-4 py-4">
-          <p class="font-mono text-[12px] text-ice">{name}</p>
+          <p class="font-mono text-[12px] text-milk">{name}</p>
           <p class="mt-1.5 text-[13px] leading-[1.6] text-muted">{PRESET_NOTES[name]}</p>
         </div>
       {/each}
@@ -99,27 +99,27 @@ field.destroy();`;
     <Code code={HANDLE} title="vanilla" />
     <ul class="mt-6 space-y-3 text-[13.5px] leading-[1.7] text-muted">
       <li>
-        <span class="font-mono text-[12.5px] text-ice">update</span> merges options, rebuilds the
+        <span class="font-mono text-[12.5px] text-milk">update</span> merges options, rebuilds the
         palette and ramp, redraws. Never rebuilds the noise tables.
       </li>
       <li>
-        <span class="font-mono text-[12.5px] text-ice">destroy</span> cancels the frame,
+        <span class="font-mono text-[12.5px] text-milk">destroy</span> cancels the frame,
         disconnects the ResizeObserver, removes every listener. Always call it.
       </li>
       <li>
-        Exports: <span class="font-mono text-[12.5px] text-ice">createField</span>,
-        <span class="font-mono text-[12.5px] text-ice">PRESETS</span>,
-        <span class="font-mono text-[12.5px] text-ice">PRESET_NAMES</span>,
-        <span class="font-mono text-[12.5px] text-ice">packPalette</span>,
-        <span class="font-mono text-[12.5px] text-ice">paletteFromTint</span>,
-        <span class="font-mono text-[12.5px] text-ice">DARK_PALETTE</span>,
-        <span class="font-mono text-[12.5px] text-ice">LIGHT_PALETTE</span>.
+        Exports: <span class="font-mono text-[12.5px] text-milk">createField</span>,
+        <span class="font-mono text-[12.5px] text-milk">PRESETS</span>,
+        <span class="font-mono text-[12.5px] text-milk">PRESET_NAMES</span>,
+        <span class="font-mono text-[12.5px] text-milk">packPalette</span>,
+        <span class="font-mono text-[12.5px] text-milk">paletteFromTint</span>,
+        <span class="font-mono text-[12.5px] text-milk">DARK_PALETTE</span>,
+        <span class="font-mono text-[12.5px] text-milk">LIGHT_PALETTE</span>.
       </li>
     </ul>
   </div>
 </section>
 
 <footer class="border-t border-hairline flex flex-col gap-3 px-5 py-8 sm:flex-row sm:items-center lg:px-8">
-  <a href="/" class="tag transition-colors hover:text-amber-text">← back</a>
+  <a href="/" class="tag transition-colors hover:text-cyan">← back</a>
   <p class="tag sm:ml-auto">mit · dawit</p>
 </footer>
