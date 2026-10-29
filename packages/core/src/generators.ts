@@ -151,10 +151,14 @@ function gridField(input: GeneratorInput): void {
         ou += (sample(tables.warp, gx * 1.4 + time * 4, gy * 1.4) - 0.5) * 1.8 * input.warp;
         ov += (sample(tables.shape, gx * 1.4, gy * 1.4 + time * 4) - 0.5) * 1.8 * input.warp;
       }
-      const su = Math.abs(((ou % 1) + 1) % 1 - 0.5) * 2;
-      const sv = Math.abs(((ov % 1) + 1) % 1 - 0.5) * 2;
+      const su = Math.abs((((ou % 1) + 1) % 1) - 0.5) * 2;
+      const sv = Math.abs((((ov % 1) + 1) % 1) - 0.5) * 2;
       const pattern =
-        input.mode === 'billow' ? Math.max(su, sv) : input.mode === 'ridged' ? Math.abs(su - sv) : Math.min(su, sv);
+        input.mode === 'billow'
+          ? Math.max(su, sv)
+          : input.mode === 'ridged'
+            ? Math.abs(su - sv)
+            : Math.min(su, sv);
       field[gy * gridWidth + gx] = 0.2 + smooth(clamp01((pattern - 0.5) * input.contrast + 0.5));
     }
   }

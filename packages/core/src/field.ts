@@ -3,14 +3,13 @@ import { buildNoiseTable, type NoiseMode } from './noise.js';
 import { BAYER, type FieldTheme, resolvePalette } from './palette.js';
 import { type FieldPreset, PRESETS } from './presets.js';
 
-export type { FieldFalloff, FieldPreset, PresetShape } from './presets.js';
 export type { FieldGenerator } from './generators.js';
 export { GENERATOR_NAMES } from './generators.js';
-export { PRESETS_BY_GENERATOR } from './presets.js';
-export { PRESETS, PRESET_NAMES } from './presets.js';
-export type { FieldTheme, Rgba } from './palette.js';
 export type { NoiseMode } from './noise.js';
-export { packPalette, paletteFromTint, DARK_PALETTE, LIGHT_PALETTE } from './palette.js';
+export type { FieldTheme, Rgba } from './palette.js';
+export { DARK_PALETTE, LIGHT_PALETTE, packPalette, paletteFromTint } from './palette.js';
+export type { FieldFalloff, FieldPreset, PresetShape } from './presets.js';
+export { PRESET_NAMES, PRESETS, PRESETS_BY_GENERATOR } from './presets.js';
 
 import type { FieldFalloff } from './presets.js';
 

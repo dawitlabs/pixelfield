@@ -1,7 +1,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { dirname, join } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { PRESETS, PRESET_NAMES } from '../dist/presets.js';
+import { PRESET_NAMES, PRESETS } from '../dist/presets.js';
 
 const root = join(dirname(fileURLToPath(import.meta.url)), '..');
 const outDir = join(root, 'registry');
@@ -77,7 +77,7 @@ ${optionLines(preset)}
 }
 `;
 
-const svelteSource = (name, preset) => `<script lang="ts">
+const svelteSource = (_name, preset) => `<script lang="ts">
   import { createField, type FieldHandle } from '@dawitlabs/pixelfield';
 
   interface Props {
@@ -142,7 +142,11 @@ for (const name of PRESET_NAMES) {
     options: preset,
     files: [
       { target: `pixelfield/${name}.tsx`, framework: 'react', content: reactSource(name, preset) },
-      { target: `pixelfield/${pascal(name)}.svelte`, framework: 'svelte', content: svelteSource(name, preset) },
+      {
+        target: `pixelfield/${pascal(name)}.svelte`,
+        framework: 'svelte',
+        content: svelteSource(name, preset),
+      },
       { target: `pixelfield/${name}.js`, framework: 'vanilla', content: vanillaSource(name, preset) },
     ],
   };

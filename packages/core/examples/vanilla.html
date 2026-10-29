@@ -110,7 +110,7 @@ function createCloud(canvas, { direction = 'down', seed = 0, intensity = 1, inte
     glow = new Float32Array(gw * gh);
     ramp = Float32Array.from({ length: h }, (_, y) => {
       const t = direction === 'up' ? 1 - y / h : y / h;
-      return direction === 'fill' ? 0.62 + 0.25 * (1 - t) : 1.05 * Math.pow(1 - t, 1.3);
+      return direction === 'fill' ? 0.62 + 0.25 * (1 - t) : 1.05 * (1 - t) ** 1.3;
     });
   }
 

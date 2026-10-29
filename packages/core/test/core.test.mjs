@@ -1,14 +1,17 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { GENERATOR_NAMES } from '../dist/generators.js';
 import { buildNoiseTable, sample, shapeNoise } from '../dist/noise.js';
 import { BAYER, packPalette, paletteFromTint } from '../dist/palette.js';
-import { PRESETS, PRESET_NAMES, PRESETS_BY_GENERATOR } from '../dist/presets.js';
-import { GENERATOR_NAMES } from '../dist/generators.js';
+import { PRESET_NAMES, PRESETS, PRESETS_BY_GENERATOR } from '../dist/presets.js';
 
 test('bayer matrix is a complete 8x8 permutation', () => {
   const values = BAYER.flatMap((row) => [...row].map((v) => Math.round(v * 64 - 0.5)));
   assert.equal(values.length, 64);
-  assert.deepEqual([...values].sort((a, b) => a - b), Array.from({ length: 64 }, (_, i) => i));
+  assert.deepEqual(
+    [...values].sort((a, b) => a - b),
+    Array.from({ length: 64 }, (_, i) => i),
+  );
 });
 
 test('noise table is deterministic and normalised', () => {
@@ -56,7 +59,18 @@ test('tint rejects a non hex value', () => {
 });
 
 test('every preset is complete and genuinely distinct', () => {
-  const keys = ['generator', 'falloff', 'scale', 'aspect', 'warp', 'contrast', 'mode', 'speed', 'intensity', 'flow'];
+  const keys = [
+    'generator',
+    'falloff',
+    'scale',
+    'aspect',
+    'warp',
+    'contrast',
+    'mode',
+    'speed',
+    'intensity',
+    'flow',
+  ];
   assert.ok(PRESET_NAMES.length >= 24, `only ${PRESET_NAMES.length} presets`);
   const seen = new Set();
   for (const name of PRESET_NAMES) {

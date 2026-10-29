@@ -8,7 +8,6 @@ const LOCAL_REGISTRY = join(HERE, '..', 'registry');
 const CONFIG_FILE = 'pixelfield.json';
 const FRAMEWORKS = ['react', 'svelte', 'vanilla'];
 
-const REMOTE_REGISTRY = 'https://pixel.dawit.dev/r';
 const DEFAULT_CONFIG = { framework: 'react', outDir: 'src/components/pixelfield', registry: '' };
 
 const c = {
@@ -140,6 +139,10 @@ ${c.bold('pixelfield')} ${c.dim('— ordered-dither noise fields you own')}
 ${c.dim('example:')}
   npx @dawitlabs/pixelfield init svelte
   npx @dawitlabs/pixelfield add ripple galaxy terrain
+
+${c.dim('effects ship inside this package, so add works offline.')}
+${c.dim('to pull from the live registry instead, set in ' + CONFIG_FILE + ':')}
+  "registry": "https://pixel.dawit.dev/r"
 `);
   return command ? 1 : 0;
 }

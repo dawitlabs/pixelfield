@@ -44,7 +44,6 @@
   },
   "scripts": {
     "build": "tsc -p tsconfig.json && node scripts/build-registry.mjs",
-    "check": "biome check .",
     "test": "pnpm build && node --test test/*.test.mjs",
     "prepublishOnly": "pnpm build && pnpm test",
     "registry": "node scripts/build-registry.mjs"

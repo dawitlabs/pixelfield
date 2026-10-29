@@ -1,7 +1,7 @@
 'use client';
 
 import { type CSSProperties, createElement, useEffect, useRef } from 'react';
-import { type FieldHandle, type FieldOptions, createField } from './field.js';
+import { createField, type FieldHandle, type FieldOptions } from './field.js';
 
 export interface FieldProps extends FieldOptions {
   className?: string;
