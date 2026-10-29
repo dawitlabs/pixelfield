@@ -54,13 +54,45 @@ export const FAMILIES = (Object.keys(GENERATOR_META) as FieldGenerator[]).map((g
 }));
 
 export const TINTS = [
-  { name: 'amber', hex: '#ff5e00' },
-  { name: 'gold', hex: '#fda600' },
-  { name: 'ice', hex: '#f8fafc' },
-  { name: 'success', hex: '#10b981' },
-  { name: 'steel', hex: '#94a3b8' },
-  { name: 'default', hex: '' },
+  { name: 'native', hex: '' },
+  { name: 'amber', hex: '#ff7a1a' },
+  { name: 'violet', hex: '#b48cf2' },
+  { name: 'cyan', hex: '#5fd4f4' },
+  { name: 'lime', hex: '#a3e635' },
+  { name: 'rose', hex: '#fb7185' },
+  { name: 'ice', hex: '#f1f5f9' },
 ] as const;
+
+export const EFFECT_TINT: Record<string, string> = {
+  clouds: '#8ab4ff',
+  fog: '#9aa6bf',
+  streaks: '#ffc86b',
+  terrain: '#9ee36a',
+  plasma: '#ff6f91',
+  smoke: '#b8c0de',
+  nebula: '#c49cff',
+  static: '#eef2f7',
+  aurora: '#5fe3c0',
+  marble: '#cdd6f4',
+  cells: '#5fd4f4',
+  cracks: '#ff9e5e',
+  bubbles: '#96f7f2',
+  mosaic: '#ffd166',
+  ripple: '#6aa8ff',
+  sonar: '#4fe0bd',
+  droplet: '#bb8cff',
+  moire: '#ff6f91',
+  silk: '#ffab76',
+  current: '#58c8f0',
+  checker: '#a3e635',
+  weave: '#f2c14e',
+  circuit: '#7aa2ff',
+  vortex: '#c08cff',
+  galaxy: '#ff9b5c',
+  portal: '#ff6b8a',
+};
+
+export const FEATURED = ['plasma', 'galaxy', 'ripple', 'circuit'] as const;
 
 export function pascal(name: string): string {
   return name[0].toUpperCase() + name.slice(1);
