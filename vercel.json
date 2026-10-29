@@ -1,0 +1,8 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "buildCommand": "pnpm --filter @dawitlabs/pixelfield build && pnpm build",
+  "installCommand": "pnpm install --frozen-lockfile=false",
+  "outputDirectory": "build",
+  "framework": null,
+  "cleanUrls": true
+}

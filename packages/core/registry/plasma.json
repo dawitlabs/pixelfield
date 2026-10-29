@@ -1,0 +1,42 @@
+{
+  "$schema": "https://pixelfield.dev/schema/registry-item.json",
+  "name": "plasma",
+  "type": "registry:effect",
+  "generator": "noise",
+  "description": "Warp and time at 2.4. The domain eats itself.",
+  "dependencies": [
+    "@dawitlabs/pixelfield"
+  ],
+  "options": {
+    "generator": "noise",
+    "falloff": "fill",
+    "scale": 0.9,
+    "aspect": 1,
+    "warp": 2.4,
+    "contrast": 1.3,
+    "mode": "fbm",
+    "speed": 2.4,
+    "intensity": 1.1,
+    "flow": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "files": [
+    {
+      "target": "pixelfield/plasma.tsx",
+      "framework": "react",
+      "content": "'use client';\n\nimport { createField } from '@dawitlabs/pixelfield';\nimport { useEffect, useRef } from 'react';\n\nexport interface PlasmaProps {\n  className?: string;\n  tint?: string;\n  seed?: number;\n  interactive?: boolean;\n}\n\nexport function Plasma({ className, tint, seed = 0, interactive = true }: PlasmaProps) {\n  const ref = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = ref.current;\n    if (!canvas) return;\n    const field = createField(canvas, {\n      generator: 'noise',\n      falloff: 'fill',\n      scale: 0.9,\n      aspect: 1,\n      warp: 2.4,\n      contrast: 1.3,\n      mode: 'fbm',\n      speed: 2.4,\n      intensity: 1.1,\n      flow: { x: 0, y: 0 },\n      seed,\n      tint,\n      interactive,\n    });\n    return () => field.destroy();\n  }, [tint, seed, interactive]);\n\n  return <canvas ref={ref} className={className} aria-hidden=\"true\" />;\n}\n"
+    },
+    {
+      "target": "pixelfield/Plasma.svelte",
+      "framework": "svelte",
+      "content": "<script lang=\"ts\">\n  import { createField, type FieldHandle } from '@dawitlabs/pixelfield';\n\n  interface Props {\n    class?: string;\n    tint?: string;\n    seed?: number;\n    interactive?: boolean;\n  }\n\n  let { class: className = '', tint = undefined, seed = 0, interactive = true }: Props = $props();\n\n  let canvas: HTMLCanvasElement;\n\n  $effect(() => {\n    const field: FieldHandle = createField(canvas, {\n      generator: 'noise',\n      falloff: 'fill',\n      scale: 0.9,\n      aspect: 1,\n      warp: 2.4,\n      contrast: 1.3,\n      mode: 'fbm',\n      speed: 2.4,\n      intensity: 1.1,\n      flow: { x: 0, y: 0 },\n      seed,\n      tint,\n      interactive,\n    });\n    return () => field.destroy();\n  });\n</script>\n\n<canvas bind:this={canvas} class={className} aria-hidden=\"true\"></canvas>\n\n<style>\n  canvas {\n    display: block;\n    width: 100%;\n    height: 100%;\n    pointer-events: none;\n  }\n</style>\n"
+    },
+    {
+      "target": "pixelfield/plasma.js",
+      "framework": "vanilla",
+      "content": "import { createField } from '@dawitlabs/pixelfield';\n\nexport function mountPlasma(canvas, { tint, seed = 0, interactive = true } = {}) {\n  return createField(canvas, {\n      generator: 'noise',\n      falloff: 'fill',\n      scale: 0.9,\n      aspect: 1,\n      warp: 2.4,\n      contrast: 1.3,\n      mode: 'fbm',\n      speed: 2.4,\n      intensity: 1.1,\n      flow: { x: 0, y: 0 },\n    seed,\n    tint,\n    interactive,\n  });\n}\n"
+    }
+  ]
+}

@@ -1,0 +1,42 @@
+{
+  "$schema": "https://pixelfield.dev/schema/registry-item.json",
+  "name": "aurora",
+  "type": "registry:effect",
+  "generator": "noise",
+  "description": "Ridged bands squashed flat and drifting sideways.",
+  "dependencies": [
+    "@dawitlabs/pixelfield"
+  ],
+  "options": {
+    "generator": "noise",
+    "falloff": "up",
+    "scale": 0.8,
+    "aspect": 0.35,
+    "warp": 1.9,
+    "contrast": 1.8,
+    "mode": "ridged",
+    "speed": 0.7,
+    "intensity": 1.1,
+    "flow": {
+      "x": 9,
+      "y": 0
+    }
+  },
+  "files": [
+    {
+      "target": "pixelfield/aurora.tsx",
+      "framework": "react",
+      "content": "'use client';\n\nimport { createField } from '@dawitlabs/pixelfield';\nimport { useEffect, useRef } from 'react';\n\nexport interface AuroraProps {\n  className?: string;\n  tint?: string;\n  seed?: number;\n  interactive?: boolean;\n}\n\nexport function Aurora({ className, tint, seed = 0, interactive = true }: AuroraProps) {\n  const ref = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = ref.current;\n    if (!canvas) return;\n    const field = createField(canvas, {\n      generator: 'noise',\n      falloff: 'up',\n      scale: 0.8,\n      aspect: 0.35,\n      warp: 1.9,\n      contrast: 1.8,\n      mode: 'ridged',\n      speed: 0.7,\n      intensity: 1.1,\n      flow: { x: 9, y: 0 },\n      seed,\n      tint,\n      interactive,\n    });\n    return () => field.destroy();\n  }, [tint, seed, interactive]);\n\n  return <canvas ref={ref} className={className} aria-hidden=\"true\" />;\n}\n"
+    },
+    {
+      "target": "pixelfield/Aurora.svelte",
+      "framework": "svelte",
+      "content": "<script lang=\"ts\">\n  import { createField, type FieldHandle } from '@dawitlabs/pixelfield';\n\n  interface Props {\n    class?: string;\n    tint?: string;\n    seed?: number;\n    interactive?: boolean;\n  }\n\n  let { class: className = '', tint = undefined, seed = 0, interactive = true }: Props = $props();\n\n  let canvas: HTMLCanvasElement;\n\n  $effect(() => {\n    const field: FieldHandle = createField(canvas, {\n      generator: 'noise',\n      falloff: 'up',\n      scale: 0.8,\n      aspect: 0.35,\n      warp: 1.9,\n      contrast: 1.8,\n      mode: 'ridged',\n      speed: 0.7,\n      intensity: 1.1,\n      flow: { x: 9, y: 0 },\n      seed,\n      tint,\n      interactive,\n    });\n    return () => field.destroy();\n  });\n</script>\n\n<canvas bind:this={canvas} class={className} aria-hidden=\"true\"></canvas>\n\n<style>\n  canvas {\n    display: block;\n    width: 100%;\n    height: 100%;\n    pointer-events: none;\n  }\n</style>\n"
+    },
+    {
+      "target": "pixelfield/aurora.js",
+      "framework": "vanilla",
+      "content": "import { createField } from '@dawitlabs/pixelfield';\n\nexport function mountAurora(canvas, { tint, seed = 0, interactive = true } = {}) {\n  return createField(canvas, {\n      generator: 'noise',\n      falloff: 'up',\n      scale: 0.8,\n      aspect: 0.35,\n      warp: 1.9,\n      contrast: 1.8,\n      mode: 'ridged',\n      speed: 0.7,\n      intensity: 1.1,\n      flow: { x: 9, y: 0 },\n    seed,\n    tint,\n    interactive,\n  });\n}\n"
+    }
+  ]
+}

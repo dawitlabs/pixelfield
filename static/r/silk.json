@@ -1,0 +1,42 @@
+{
+  "$schema": "https://pixelfield.dev/schema/registry-item.json",
+  "name": "silk",
+  "type": "registry:effect",
+  "generator": "waves",
+  "description": "Soft low frequency interference.",
+  "dependencies": [
+    "@dawitlabs/pixelfield"
+  ],
+  "options": {
+    "generator": "waves",
+    "falloff": "fill",
+    "scale": 0.85,
+    "aspect": 1,
+    "warp": 0.45,
+    "contrast": 0.85,
+    "mode": "fbm",
+    "speed": 0.8,
+    "intensity": 1,
+    "flow": {
+      "x": 0,
+      "y": 0
+    }
+  },
+  "files": [
+    {
+      "target": "pixelfield/silk.tsx",
+      "framework": "react",
+      "content": "'use client';\n\nimport { createField } from '@dawitlabs/pixelfield';\nimport { useEffect, useRef } from 'react';\n\nexport interface SilkProps {\n  className?: string;\n  tint?: string;\n  seed?: number;\n  interactive?: boolean;\n}\n\nexport function Silk({ className, tint, seed = 0, interactive = true }: SilkProps) {\n  const ref = useRef<HTMLCanvasElement>(null);\n\n  useEffect(() => {\n    const canvas = ref.current;\n    if (!canvas) return;\n    const field = createField(canvas, {\n      generator: 'waves',\n      falloff: 'fill',\n      scale: 0.85,\n      aspect: 1,\n      warp: 0.45,\n      contrast: 0.85,\n      mode: 'fbm',\n      speed: 0.8,\n      intensity: 1,\n      flow: { x: 0, y: 0 },\n      seed,\n      tint,\n      interactive,\n    });\n    return () => field.destroy();\n  }, [tint, seed, interactive]);\n\n  return <canvas ref={ref} className={className} aria-hidden=\"true\" />;\n}\n"
+    },
+    {
+      "target": "pixelfield/Silk.svelte",
+      "framework": "svelte",
+      "content": "<script lang=\"ts\">\n  import { createField, type FieldHandle } from '@dawitlabs/pixelfield';\n\n  interface Props {\n    class?: string;\n    tint?: string;\n    seed?: number;\n    interactive?: boolean;\n  }\n\n  let { class: className = '', tint = undefined, seed = 0, interactive = true }: Props = $props();\n\n  let canvas: HTMLCanvasElement;\n\n  $effect(() => {\n    const field: FieldHandle = createField(canvas, {\n      generator: 'waves',\n      falloff: 'fill',\n      scale: 0.85,\n      aspect: 1,\n      warp: 0.45,\n      contrast: 0.85,\n      mode: 'fbm',\n      speed: 0.8,\n      intensity: 1,\n      flow: { x: 0, y: 0 },\n      seed,\n      tint,\n      interactive,\n    });\n    return () => field.destroy();\n  });\n</script>\n\n<canvas bind:this={canvas} class={className} aria-hidden=\"true\"></canvas>\n\n<style>\n  canvas {\n    display: block;\n    width: 100%;\n    height: 100%;\n    pointer-events: none;\n  }\n</style>\n"
+    },
+    {
+      "target": "pixelfield/silk.js",
+      "framework": "vanilla",
+      "content": "import { createField } from '@dawitlabs/pixelfield';\n\nexport function mountSilk(canvas, { tint, seed = 0, interactive = true } = {}) {\n  return createField(canvas, {\n      generator: 'waves',\n      falloff: 'fill',\n      scale: 0.85,\n      aspect: 1,\n      warp: 0.45,\n      contrast: 0.85,\n      mode: 'fbm',\n      speed: 0.8,\n      intensity: 1,\n      flow: { x: 0, y: 0 },\n    seed,\n    tint,\n    interactive,\n  });\n}\n"
+    }
+  ]
+}

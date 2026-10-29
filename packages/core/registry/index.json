@@ -1,0 +1,162 @@
+{
+  "version": 1,
+  "count": 26,
+  "items": [
+    {
+      "name": "clouds",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "Soft fbm billows gathering at the top edge."
+    },
+    {
+      "name": "fog",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "Low frequency haze that barely moves."
+    },
+    {
+      "name": "streaks",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "Squashed billow noise pushed sideways. Interference, not water."
+    },
+    {
+      "name": "terrain",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "Ridged noise at high contrast. Sharp veins."
+    },
+    {
+      "name": "plasma",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "Warp and time at 2.4. The domain eats itself."
+    },
+    {
+      "name": "smoke",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "Stretched vertically, drifting up into the ceiling."
+    },
+    {
+      "name": "nebula",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "Ridged at low frequency. Structure without edges."
+    },
+    {
+      "name": "static",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "No warp, frequency past the pixel grid."
+    },
+    {
+      "name": "aurora",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "Ridged bands squashed flat and drifting sideways."
+    },
+    {
+      "name": "marble",
+      "type": "registry:effect",
+      "generator": "noise",
+      "description": "Heavy warp on ridged noise, almost still."
+    },
+    {
+      "name": "cells",
+      "type": "registry:effect",
+      "generator": "cells",
+      "description": "Voronoi edges wobbling against each other."
+    },
+    {
+      "name": "cracks",
+      "type": "registry:effect",
+      "generator": "cells",
+      "description": "Inverted cell edges at high contrast."
+    },
+    {
+      "name": "bubbles",
+      "type": "registry:effect",
+      "generator": "cells",
+      "description": "Cell bodies rising and fading out of the top."
+    },
+    {
+      "name": "mosaic",
+      "type": "registry:effect",
+      "generator": "cells",
+      "description": "Flat voronoi tiles, nearly frozen."
+    },
+    {
+      "name": "ripple",
+      "type": "registry:effect",
+      "generator": "rings",
+      "description": "Concentric rings expanding from the centre."
+    },
+    {
+      "name": "sonar",
+      "type": "registry:effect",
+      "generator": "rings",
+      "description": "Hard ringed sweep at low frequency."
+    },
+    {
+      "name": "droplet",
+      "type": "registry:effect",
+      "generator": "rings",
+      "description": "Tight folded rings with a warped centre."
+    },
+    {
+      "name": "moire",
+      "type": "registry:effect",
+      "generator": "waves",
+      "description": "Three sine waves crossing at high frequency."
+    },
+    {
+      "name": "silk",
+      "type": "registry:effect",
+      "generator": "waves",
+      "description": "Soft low frequency interference."
+    },
+    {
+      "name": "current",
+      "type": "registry:effect",
+      "generator": "waves",
+      "description": "Folded waves with heavy warp."
+    },
+    {
+      "name": "checker",
+      "type": "registry:effect",
+      "generator": "grid",
+      "description": "Clean checkerboard drifting sideways."
+    },
+    {
+      "name": "weave",
+      "type": "registry:effect",
+      "generator": "grid",
+      "description": "Interlocked grid lines from a ridged fold."
+    },
+    {
+      "name": "circuit",
+      "type": "registry:effect",
+      "generator": "grid",
+      "description": "Warped grid broken into traces."
+    },
+    {
+      "name": "vortex",
+      "type": "registry:effect",
+      "generator": "spiral",
+      "description": "Two spiral arms turning from the centre."
+    },
+    {
+      "name": "galaxy",
+      "type": "registry:effect",
+      "generator": "spiral",
+      "description": "Ridged spiral arms with a soft core."
+    },
+    {
+      "name": "portal",
+      "type": "registry:effect",
+      "generator": "spiral",
+      "description": "Fast folded spiral with a hard rim."
+    }
+  ]
+}

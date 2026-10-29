@@ -1,0 +1,73 @@
+{
+  "name": "@dawitlabs/pixelfield",
+  "version": "0.1.0",
+  "description": "Animated ordered-dither noise fields for canvas. Clouds, fog, waves, terrain, plasma, smoke, nebula, static. Zero dependencies, with React and Svelte bindings.",
+  "type": "module",
+  "license": "MIT",
+  "author": "Dawit Worku Jima <dawitworkujima@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dawitlabs/pixelfield.git"
+  },
+  "keywords": [
+    "canvas",
+    "dither",
+    "bayer",
+    "noise",
+    "fbm",
+    "pixel-art",
+    "generative",
+    "react",
+    "svelte"
+  ],
+  "sideEffects": false,
+  "files": [
+    "dist",
+    "src",
+    "bin",
+    "registry",
+    "README.md"
+  ],
+  "exports": {
+    ".": {
+      "types": "./dist/field.d.ts",
+      "import": "./dist/field.js"
+    },
+    "./react": {
+      "types": "./dist/react.d.ts",
+      "import": "./dist/react.js"
+    },
+    "./svelte": {
+      "svelte": "./src/svelte/Field.svelte",
+      "default": "./src/svelte/Field.svelte"
+    }
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node scripts/build-registry.mjs",
+    "check": "biome check .",
+    "test": "pnpm build && node --test test/*.test.mjs",
+    "prepublishOnly": "pnpm test",
+    "registry": "node scripts/build-registry.mjs"
+  },
+  "peerDependencies": {
+    "react": ">=18",
+    "svelte": ">=5"
+  },
+  "peerDependenciesMeta": {
+    "react": {
+      "optional": true
+    },
+    "svelte": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^2.6.2",
+    "@types/react": "^19.2.0",
+    "typescript": "^5.9.0"
+  },
+  "packageManager": "pnpm@10.29.3",
+  "bin": {
+    "pixelfield": "./bin/pixelfield.mjs"
+  }
+}
