@@ -46,7 +46,7 @@
     "build": "tsc -p tsconfig.json && node scripts/build-registry.mjs",
     "check": "biome check .",
     "test": "pnpm build && node --test test/*.test.mjs",
-    "prepublishOnly": "pnpm test",
+    "prepublishOnly": "pnpm build && pnpm test",
     "registry": "node scripts/build-registry.mjs"
   },
   "peerDependencies": {
@@ -69,5 +69,10 @@
   "packageManager": "pnpm@10.29.3",
   "bin": {
     "pixelfield": "./bin/pixelfield.mjs"
+  },
+  "publishConfig": {
+    "access": "public",
+    "provenance": true,
+    "registry": "https://registry.npmjs.org"
   }
 }

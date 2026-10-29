@@ -7,6 +7,7 @@
 
   const LINKS = [
     { href: '/', label: 'effects', icon: 'grid' },
+    { href: '/create/', label: 'creator', icon: 'sliders' },
     { href: '/api/', label: 'reference', icon: 'book-open' },
   ];
 
@@ -41,7 +42,7 @@
   });
 
   function isActive(href: string): boolean {
-    return href === '/' ? page.url.pathname === '/' : page.url.pathname.startsWith('/api');
+    return href === '/' ? page.url.pathname === '/' : page.url.pathname.startsWith(href);
   }
 </script>
 
