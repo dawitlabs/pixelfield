@@ -8,6 +8,7 @@ const LOCAL_REGISTRY = join(HERE, '..', 'registry');
 const CONFIG_FILE = 'pixelfield.json';
 const FRAMEWORKS = ['react', 'svelte', 'vanilla'];
 
+const REMOTE_REGISTRY = 'https://pixel.dawit.dev/r';
 const DEFAULT_CONFIG = { framework: 'react', outDir: 'src/components/pixelfield', registry: '' };
 
 const c = {
