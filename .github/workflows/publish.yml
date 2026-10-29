@@ -12,7 +12,6 @@ permissions:
 jobs:
   npm:
     runs-on: ubuntu-latest
-    environment: npm
     steps:
       - uses: actions/checkout@v4
 
@@ -20,9 +19,17 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.14.0
           cache: pnpm
           registry-url: https://registry.npmjs.org
+
+      - name: Use an npm CLI that supports trusted publishing
+        run: npm install -g npm@latest
+
+      - name: Report toolchain
+        run: |
+          node --version
+          npm --version
 
       - run: pnpm install --frozen-lockfile
 
@@ -31,8 +38,6 @@ jobs:
           pnpm --filter @dawitlabs/pixelfield build
           pnpm --filter @dawitlabs/pixelfield test
 
-      - name: Publish to npm
-        run: npm publish --access public --provenance
+      - name: Publish via trusted publishing (OIDC, no token)
+        run: npm publish --access public
         working-directory: packages/core
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
