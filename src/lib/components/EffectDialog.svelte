@@ -58,7 +58,7 @@
       <button
         type="button"
         onclick={onclose}
-        class="shrink-0 rounded-sm p-1.5 text-faint transition-colors duration-200 hover:bg-panel hover:text-paper"
+        class="shrink-0 rounded-sm p-1.5 text-faint transition-colors duration-200 hover:bg-surface hover:text-paper"
         aria-label="Close"
       >
         <X size={16} aria-hidden="true" />
@@ -94,7 +94,7 @@
             <button
               type="button"
               onclick={() => copy('cli')}
-              class="flex items-center gap-1.5 rounded-sm px-2 py-1 font-mono text-[11px] text-faint transition-all duration-200 ease-[var(--ease-spring)] hover:bg-panel hover:text-paper active:scale-92"
+              class="flex items-center gap-1.5 rounded-sm px-2 py-1 font-mono text-[11px] text-faint transition-all duration-200 ease-[var(--ease-spring)] hover:bg-surface hover:text-paper active:scale-92"
             >
               {#if copied === 'cli'}<Check size={12} /> copied{:else}<Copy size={12} /> copy{/if}
             </button>
@@ -109,7 +109,7 @@
                 type="button"
                 onclick={() => (framework = f)}
                 data-active={framework === f}
-                class="rounded-sm px-2.5 py-1 font-mono text-[11px] text-faint transition-colors duration-200 hover:text-paper data-[active=true]:bg-panel data-[active=true]:text-paper"
+                class="rounded-sm px-2.5 py-1 font-mono text-[11px] text-faint transition-colors duration-200 hover:text-paper data-[active=true]:bg-surface data-[active=true]:text-paper"
               >
                 {f}
               </button>
@@ -117,7 +117,7 @@
             <button
               type="button"
               onclick={() => copy('source')}
-              class="ml-auto flex items-center gap-1.5 rounded-sm px-2 py-1 font-mono text-[11px] text-faint transition-all duration-200 ease-[var(--ease-spring)] hover:bg-panel hover:text-paper active:scale-92"
+              class="ml-auto flex items-center gap-1.5 rounded-sm px-2 py-1 font-mono text-[11px] text-faint transition-all duration-200 ease-[var(--ease-spring)] hover:bg-surface hover:text-paper active:scale-92"
             >
               {#if copied === 'source'}<Check size={12} /> copied{:else}<Copy size={12} /> copy{/if}
             </button>
