@@ -11,9 +11,27 @@ importers:
       '@dawitlabs/pixelfield':
         specifier: workspace:*
         version: link:packages/core
+      '@iconify-json/pixelarticons':
+        specifier: ^1.2.10
+        version: 1.2.10
+      '@iconify/svelte':
+        specifier: ^5.2.3
+        version: 5.2.3(svelte@5.57.3)
+      blobity:
+        specifier: ^0.2.3
+        version: 0.2.3(react@19.3.1)
+      headroom.js:
+        specifier: ^0.12.0
+        version: 0.12.0
       lucide-svelte:
         specifier: ^0.545.0
         version: 0.545.0(svelte@5.57.3)
+      overlayscrollbars:
+        specifier: ^2.17.0
+        version: 2.17.0
+      overlayscrollbars-svelte:
+        specifier: ^0.5.5
+        version: 0.5.5(overlayscrollbars@2.17.0)(svelte@5.57.3)
     devDependencies:
       '@biomejs/biome':
         specifier: ^2.6.2
@@ -291,6 +309,17 @@ packages:
     engines: {node: '>=18'}
     cpu: [x64]
     os: [win32]
+
+  '@iconify-json/pixelarticons@1.2.10':
+    resolution: {integrity: sha512-bGUjTf8BRz0Abr5VNdy2rEB8eUB0evlaVtD4YlHSC16T7Yj70X8CRhEoetgHJJEbFu61veDWPcg71lp1H1NSSg==}
+
+  '@iconify/svelte@5.2.3':
+    resolution: {integrity: sha512-RV08FAHSsUW3/4WJsfoMYGbNt413Eh+4thU864pmX2QGFaem2P7zTcANYwkSOnApGlpYhMXJM813tN1tfk68ug==}
+    peerDependencies:
+      svelte: '>5.0.0'
+
+  '@iconify/types@2.0.0':
+    resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
   '@jridgewell/gen-mapping@0.3.13':
     resolution: {integrity: sha512-2kkt/7niJ6MgEPxF0bYdQ6etZaA+fQvDcLKckhy1yIQOzaoKjBBjSj63/aLVjYE3qhRt5dvM+uUyfCg6UKCBbA==}
@@ -623,6 +652,12 @@ packages:
     resolution: {integrity: sha512-qIj0G9wZbMGNLjLmg1PT6v2mE9AH2zlnADJD/2tC6E00hgmhUOfEB6greHPAfLRSufHqROIUTkw6E+M3lH0PTQ==}
     engines: {node: '>= 0.4'}
 
+  blobity@0.2.3:
+    resolution: {integrity: sha512-ooIyE44R+Gc+DbGCkMAcyAPln30nvQnZIsjmCDO9PUUoRkv2fNliHhsunL+GFp5JmAzbinO4iCeBwjjO6JeEcg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      vue: next
+
   chokidar@4.0.3:
     resolution: {integrity: sha512-Qgzu8kfBvo+cA4962jnP1KkS6Dop5NS6g7R5LFYJr4b8Ub94PPQXUksCw9PvXoeXPRRddRNC5C1JQUR2SMGtnA==}
     engines: {node: '>= 14.16.0'}
@@ -686,12 +721,18 @@ packages:
   graceful-fs@4.2.11:
     resolution: {integrity: sha512-RbJ5/jmFcNNCcDV5o9eTnBLJ/HszWV0P73bc+Ff4nS/rJj+YaS6IGyiOL0VoBYX+l1Wrl3k63h/KrH+nhJ0XvQ==}
 
+  headroom.js@0.12.0:
+    resolution: {integrity: sha512-iXnAafUm3FdzfJ91uixLws2hkKI1jC8bAKK/pt7XYr8Ie1jO7xbK48Ycpl9tUPyBgkzuj1p/PhJS0fy4E/5anA==}
+
   is-reference@3.0.3:
     resolution: {integrity: sha512-ixkJoqQvAP88E6wLydLGGqCJsrFUnqoH6HnaczB8XmDH1oaWU+xxdptvikTgaEhtZ53Ky6YXiBuUI2WXLMCwjw==}
 
   jiti@2.7.0:
     resolution: {integrity: sha512-AC/7JofJvZGrrneWNaEnJeOLUx+JlGt7tNa0wZiRPT4MY1wmfKjt2+6O2p2uz2+skll8OZZmJMNqeke7kKbNgQ==}
     hasBin: true
+
+  kinet@2.2.1:
+    resolution: {integrity: sha512-UmnTPmnEokjxBeB3gPkOnTwRlIUaAeB+t21E+HJGzRKCGdJTUF3CTztK5yzzEuBQ1BZ0I0ovrY73+ctpPWFIOg==}
 
   kleur@4.1.5:
     resolution: {integrity: sha512-o+NO+8WrRiQEE4/7nwRJhN1HWpVmJm511pBHUxPLtp0BUISzlBplORYSmTclCnJvQq2tKu/sgl3xVpkc7ZWuQQ==}
@@ -774,6 +815,9 @@ packages:
   locate-character@3.0.0:
     resolution: {integrity: sha512-SW13ws7BjaeJ6p7Q6CO2nchbYEc3X3J6WrmTTDto7yMPqVSZTUyY5Tjbid+Ab8gLnATtygYtiDIJGQRRn2ZOiA==}
 
+  lodash@4.18.1:
+    resolution: {integrity: sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==}
+
   lucide-svelte@0.545.0:
     resolution: {integrity: sha512-lVza6hIAf1abADTU1ThyNp+M3bQZtzTGQ9EQZ2xo3n9ftkd4QcWbDB2ekP2MqRLTJpeLXX5gaFEgFZtbWCnyqg==}
     deprecated: Package deprecated. Please use @lucide/svelte instead.
@@ -799,6 +843,15 @@ packages:
   obug@2.2.1:
     resolution: {integrity: sha512-XrsrhT5sybtKI6wakr2SPOlGZWWYbUXZ7a0jT8/QOeAPau+1X/bSegNe5YR75oJmEZQbKningirmGOEJCIk61Q==}
     engines: {node: '>=12.20.0'}
+
+  overlayscrollbars-svelte@0.5.5:
+    resolution: {integrity: sha512-+dRW3YZSvFbKi5vDCpnUOHuoPLLSdu0BUVVMYZdmfVghu7XkafDRebG2y91/ImPqj6YDAUsz1rcWVYhCJSS/pQ==}
+    peerDependencies:
+      overlayscrollbars: ^2.0.0
+      svelte: ^5.0.0
+
+  overlayscrollbars@2.17.0:
+    resolution: {integrity: sha512-tyFSxFVJ2FcTTiEkwMthAb+Ogs8vgpW31Sy5z2TL1Q6Kw7579zrcd4xDm38lmdD934LjiTHyrzR90KMDrbCXoA==}
 
   picocolors@1.1.1:
     resolution: {integrity: sha512-xceH2snhtb5M9liqDsmEw56le376mTZkEX/jEb/RxNFyegNul7eNslCXP9FDj/Lcu0X8KEyMceP2ntpaHrDEVA==}
@@ -1045,6 +1098,17 @@ snapshots:
   '@esbuild/win32-x64@0.28.2':
     optional: true
 
+  '@iconify-json/pixelarticons@1.2.10':
+    dependencies:
+      '@iconify/types': 2.0.0
+
+  '@iconify/svelte@5.2.3(svelte@5.57.3)':
+    dependencies:
+      '@iconify/types': 2.0.0
+      svelte: 5.57.3
+
+  '@iconify/types@2.0.0': {}
+
   '@jridgewell/gen-mapping@0.3.13':
     dependencies:
       '@jridgewell/sourcemap-codec': 1.6.0
@@ -1277,6 +1341,12 @@ snapshots:
 
   axobject-query@4.1.0: {}
 
+  blobity@0.2.3(react@19.3.1):
+    dependencies:
+      kinet: 2.2.1
+      lodash: 4.18.1
+      react: 19.3.1
+
   chokidar@4.0.3:
     dependencies:
       readdirp: 4.1.2
@@ -1342,11 +1412,15 @@ snapshots:
 
   graceful-fs@4.2.11: {}
 
+  headroom.js@0.12.0: {}
+
   is-reference@3.0.3:
     dependencies:
       '@types/estree': 1.0.10
 
   jiti@2.7.0: {}
+
+  kinet@2.2.1: {}
 
   kleur@4.1.5: {}
 
@@ -1401,6 +1475,8 @@ snapshots:
 
   locate-character@3.0.0: {}
 
+  lodash@4.18.1: {}
+
   lucide-svelte@0.545.0(svelte@5.57.3):
     dependencies:
       svelte: 5.57.3
@@ -1416,6 +1492,13 @@ snapshots:
   nanoid@3.3.20: {}
 
   obug@2.2.1: {}
+
+  overlayscrollbars-svelte@0.5.5(overlayscrollbars@2.17.0)(svelte@5.57.3):
+    dependencies:
+      overlayscrollbars: 2.17.0
+      svelte: 5.57.3
+
+  overlayscrollbars@2.17.0: {}
 
   picocolors@1.1.1: {}
 

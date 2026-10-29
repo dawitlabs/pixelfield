@@ -74,7 +74,7 @@
         </p>
 
         <div class="w-full max-w-md">
-          <div class="overflow-hidden rounded-md border border-hairline">
+          <div class="overflow-hidden" style="box-shadow: inset 0 0 0 1.5px var(--color-paper)">
             <div class="flex items-center gap-4 border-b border-hairline-soft px-4 py-2.5">
               {#each MANAGERS as m (m)}
                 <button
@@ -104,13 +104,13 @@
           <div class="mt-3 flex items-center gap-3">
             <a
               href="#effects"
-              class="rounded-pill bg-paper px-5 py-2.5 text-[13px] font-600 text-ink transition-transform duration-200 ease-[var(--ease-spring)] hover:-translate-y-0.5 active:scale-97"
+              class="btn-1bit-solid hover:dither-fill"
             >
               Browse 26 effects
             </a>
             <a
               href="/api/"
-              class="rounded-pill border border-hairline px-5 py-2.5 text-[13px] font-500 transition-colors duration-200 hover:border-paper"
+              class="btn-1bit hover:dither-fill"
             >
               Reference
             </a>
@@ -135,7 +135,8 @@
     </div>
   </div>
 
-  <div class="mt-6 flex flex-wrap gap-5 border-b border-hairline-soft pb-4" role="tablist" aria-label="Effect family">
+  <div class="dither-rule mt-6"></div>
+  <div class="mt-4 flex flex-wrap gap-5 pb-5" role="tablist" aria-label="Effect family">
     <button
       type="button"
       role="tab"
@@ -161,7 +162,7 @@
   </div>
 
   {#key family}
-    <div class="mt-6 grid auto-rows-[10rem] grid-cols-2 gap-3 sm:auto-rows-[11.5rem] sm:grid-cols-4">
+    <div class="grid auto-rows-[9rem] grid-cols-2 gap-x-3 gap-y-6 sm:auto-rows-[10.5rem] sm:grid-cols-4">
       {#each shown as effect, i (effect.name)}
         <EffectCard
           name={effect.name}
@@ -183,9 +184,10 @@
   <h2 class="display mt-3 text-[clamp(1.8rem,3.4vw,2.6rem)]">
     Copy, <span class="accent-serif italic">don't install</span>
   </h2>
-  <div class="mt-8 grid gap-px border border-hairline-soft bg-[var(--color-hairline-soft)] sm:grid-cols-3">
+  <div class="dither-rule mt-8"></div>
+  <div class="mt-8 grid gap-10 sm:grid-cols-3">
     {#each [{ n: '01', t: 'Init', b: 'One command writes pixelfield.json with your framework and output path.' }, { n: '02', t: 'Add', b: 'Name the effects you want. Real source files land in your project.' }, { n: '03', t: 'Own', b: 'Every option is inlined. Edit it, rename it, delete what you do not need.' }] as step (step.n)}
-      <div class="bg-ink p-7">
+      <div>
         <div class="flex items-center gap-2.5">
           <Mark size={11} />
           <span class="num text-[11px] text-faint">{step.n}</span>

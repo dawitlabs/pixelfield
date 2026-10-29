@@ -13,7 +13,13 @@
   },
   "dependencies": {
     "@dawitlabs/pixelfield": "workspace:*",
-    "lucide-svelte": "^0.545.0"
+    "@iconify-json/pixelarticons": "^1.2.10",
+    "@iconify/svelte": "^5.2.3",
+    "blobity": "^0.2.3",
+    "headroom.js": "^0.12.0",
+    "lucide-svelte": "^0.545.0",
+    "overlayscrollbars": "^2.17.0",
+    "overlayscrollbars-svelte": "^0.5.5"
   },
   "devDependencies": {
     "@biomejs/biome": "^2.6.2",

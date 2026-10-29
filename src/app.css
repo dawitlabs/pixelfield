@@ -143,3 +143,114 @@
 @utility rise {
   animation: rise-in 0.7s var(--ease-soft) both;
 }
+
+@layer base {
+  :root {
+    --dither-50: repeating-conic-gradient(var(--color-paper) 0% 25%, transparent 0% 50%) 0 0 / 2px 2px;
+    --dither-25: radial-gradient(var(--color-paper) 0.5px, transparent 0.6px) 0 0 / 3px 3px;
+    --dither-12: radial-gradient(var(--color-paper) 0.5px, transparent 0.6px) 0 0 / 4px 4px;
+    --dither-06: radial-gradient(var(--color-paper) 0.5px, transparent 0.6px) 0 0 / 6px 6px;
+  }
+
+  :root[data-cursor='custom'],
+  :root[data-cursor='custom'] * {
+    cursor: none;
+  }
+}
+
+@utility dither-rule {
+  height: 3px;
+  background: var(--dither-25);
+}
+
+@utility dither-fill {
+  background: var(--dither-50);
+}
+
+@utility dither-edge {
+  box-shadow: 0 0 0 1px var(--color-hairline-soft);
+}
+
+@utility btn-1bit {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.3rem;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-paper);
+  background: transparent;
+  box-shadow: inset 0 0 0 1.5px var(--color-paper);
+  transition: color 180ms var(--ease-soft);
+}
+
+@utility btn-1bit-solid {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.3rem;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-ink);
+  background: var(--color-paper);
+  transition: all 180ms var(--ease-soft);
+}
+
+@keyframes cursor-pop {
+  from { transform: translate(-50%, -50%) scale(0.6); }
+  to { transform: translate(-50%, -50%) scale(1); }
+}
+
+@layer base {
+  input[type='range'] {
+    appearance: none;
+    height: 18px;
+    background: transparent;
+  }
+
+  input[type='range']::-webkit-slider-runnable-track {
+    height: 3px;
+    background: var(--dither-25);
+  }
+
+  input[type='range']::-webkit-slider-thumb {
+    appearance: none;
+    margin-top: -5px;
+    height: 13px;
+    width: 13px;
+    background: var(--color-paper);
+    border-radius: 0;
+  }
+
+  ::placeholder {
+    color: var(--color-faint);
+  }
+}
+
+.os-theme-pixelfield {
+  --os-size: 12px;
+  --os-padding-perpendicular: 2px;
+  --os-padding-axis: 2px;
+  --os-track-border-radius: 0;
+  --os-track-bg: transparent;
+  --os-track-bg-hover: transparent;
+  --os-track-bg-active: transparent;
+  --os-handle-border-radius: 0;
+  --os-handle-bg: var(--color-dim);
+  --os-handle-bg-hover: var(--color-paper);
+  --os-handle-bg-active: var(--color-paper);
+  --os-handle-min-size: 42px;
+}
+
+.os-theme-pixelfield .os-scrollbar-handle {
+  background-image: var(--dither-50);
+  background-color: transparent;
+}
+
+.os-theme-pixelfield .os-scrollbar-handle:hover,
+.os-theme-pixelfield .os-scrollbar-handle:active {
+  background-image: none;
+  background-color: var(--color-paper);
+}

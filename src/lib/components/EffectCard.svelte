@@ -30,24 +30,30 @@
 <button
   type="button"
   onclick={() => onopen?.(name)}
-  style="animation-delay: {Math.min(index * 30, 480)}ms"
-  class="rise group relative flex h-full flex-col overflow-hidden rounded-md border border-hairline-soft bg-ink text-left transition-[border-color,transform] duration-400 ease-[var(--ease-spring)] hover:-translate-y-1 hover:border-paper focus-visible:-translate-y-1 {span
+  style="animation-delay: {Math.min(index * 26, 420)}ms"
+  class="rise group relative flex h-full flex-col bg-ink text-left {span
     ? 'sm:col-span-2 sm:row-span-2'
     : ''}"
   aria-label="Open {name}"
 >
-  <span class="relative block min-h-0 flex-1">
+  <span class="relative block min-h-0 flex-1 overflow-hidden">
     <Field preset={name} {tint} theme={fieldTheme} {seed} interactive={false} />
+    <span
+      class="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100 group-focus-visible:opacity-100"
+      style="box-shadow: inset 0 0 0 2px var(--color-paper)"
+    ></span>
+    <span
+      class="pointer-events-none absolute right-0 bottom-0 left-0 translate-y-1 px-2 py-1.5 text-[11px] leading-[1.45] opacity-0 transition-all duration-250 ease-[var(--ease-soft)] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
+      style="background: var(--color-ink); color: var(--color-dim)"
+    >
+      {note}
+    </span>
   </span>
 
-  <span class="flex items-baseline justify-between gap-2 border-t border-hairline-soft px-3.5 py-2.5">
-    <span class="text-[14px] font-500 tracking-tight">{name}</span>
-    <span class="tag">{generator}</span>
-  </span>
-
-  <span
-    class="pointer-events-none absolute inset-x-0 bottom-[42px] translate-y-2 bg-ink/92 px-3.5 py-2.5 text-[12.5px] leading-[1.5] text-dim opacity-0 backdrop-blur-sm transition-all duration-300 ease-[var(--ease-soft)] group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100"
-  >
-    {note}
+  <span class="flex items-baseline justify-between gap-2 pt-1.5 pb-0.5">
+    <span class="font-mono text-[11.5px] tracking-tight transition-opacity duration-200 group-hover:opacity-100 sm:opacity-70">
+      {name}
+    </span>
+    <span class="font-mono text-[9.5px] tracking-[0.16em] text-faint uppercase">{generator}</span>
   </span>
 </button>
